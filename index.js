@@ -1,12 +1,12 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false }); // headless: false로 설정하면 브라우저가 실제로 열립니다.
+    const browser = await puppeteer.launch({ headless: false, slowMo: 50 }); // headless: false로 설정하면 브라우저가 실제로 열립니다.
   const page = await browser.newPage();
-  await page.goto('https://school.busanedu.net/bssm-h/main.do');
+  await page.goto('https://school.busanedu.net/bssm-h/main.do', { waitUntil: 'networkidle2' });
 
   // 로그인 페이지로 이동
-  await page.goto('https://school.busanedu.net/bssm-h/lo/login/loginPage.do');
+  await page.goto('https://school.busanedu.net/bssm-h/lo/login/loginPage.do', { waitUntil: 'networkidle2' });
 
   // 로그인 폼 작성
   await page.type('#mberId', 'jjoon1379'); // 아이디 입력 필드의 선택자를 변경하세요.
